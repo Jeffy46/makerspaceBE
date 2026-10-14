@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/events", async (_req, res) => {
+app.get("/api/events", async (_req, res) => {
   const events = await prisma.events.findMany({
     orderBy: [{ event_time: "asc" }],
   });
