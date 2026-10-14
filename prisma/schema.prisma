@@ -1,0 +1,26 @@
+generator client {
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["views"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model events_data {
+  event_id          Int      @id
+  title             String   @db.VarChar(255)
+  event_time        DateTime @db.Timestamptz(6)
+  event_poster_path String?
+  event_link        String?
+}
+
+view events {
+  event_id          Int?
+  title             String?   @db.VarChar(255)
+  event_time        DateTime? @db.Timestamptz(6)
+  event_poster_path String?
+  event_link        String?
+  has_occurred      Boolean?
+}
