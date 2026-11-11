@@ -13,8 +13,12 @@ app.get("/api/events", async (_req, res) => {
   });
   res.json(events);
 });
+app.get("/api/attendees", async (_req, res) => {
+  const events = await prisma.event_attendees.findMany();
+  res.json(events);
+});
 
-const port = Number(process.env.PORT) || 3000;
+const port = Number(process.env.PORT) || 5000;
 const server = app.listen(port, () => console.log(`Listening on :${port}`));
 
 process.on("SIGTERM", async () => {

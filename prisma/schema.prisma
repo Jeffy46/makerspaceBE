@@ -16,6 +16,32 @@ model events_data {
   event_link        String?
 }
 
+model event_attendees {
+  event_id              Int
+  email                 String
+  first_name            String?
+  last_name             String?
+  account_type          String?
+  year_of_graduation    String?
+  is_member             Boolean?  @default(false)
+  membership_degree     String?
+  rsvped                Boolean?  @default(false)
+  registration_type     String?
+  quantity              Int?      @default(1)
+  registration_status   String?
+  registration_date     DateTime? @db.Timestamptz(6)
+  custom_field_required String?
+  custom_notes          String?
+  officers_notes        String?
+  checked_in            Boolean?  @default(false)
+  checked_in_at         DateTime? @db.Timestamptz(6)
+  no_show               Boolean?  @default(false)
+  rsvped_at             DateTime? @db.Timestamptz(6)
+  attendees_net_id      String?
+
+  @@id([event_id, email])
+}
+
 view events {
   event_id          Int?
   title             String?   @db.VarChar(255)
