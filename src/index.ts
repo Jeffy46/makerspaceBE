@@ -2,7 +2,9 @@ import "dotenv/config";
 import express from "express";
 import { prisma } from "./prisma.js";
 import cors from "cors";
-
+(BigInt.prototype as unknown as { toJSON: () => string }).toJSON = function () {
+  return this.toString();
+};
 const app = express();
 app.use(cors());
 app.use(express.json());
